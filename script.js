@@ -307,7 +307,7 @@ if (finePointer && !reduced) {
             }
             ctx.beginPath();
             ctx.arc(a.x, a.y, a.r, 0, 6.283);
-            ctx.fillStyle = dm < near ? "rgba(255,216,77,.95)" : "rgba(236,239,248,.45)";
+            ctx.fillStyle = dm < near ? "rgba(255,111,181,.95)" : "rgba(236,239,248,.45)";
             ctx.fill();
 
             for (let j = i + 1; j < dots.length; j++) {
