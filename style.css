@@ -2189,3 +2189,53 @@ main,
         right: calc(50% - 56px);
     }
 }
+
+/* ---------- requested mobile button layout ---------- */
+@media (max-width: 600px) {
+    .project .p-links {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .project .p-links .btn,
+    .project .p-links a {
+        min-width: 0;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 0.84rem;
+    }
+
+    .project .p-links .btn {
+        width: 100%;
+        padding: 10px 8px;
+        gap: 6px;
+    }
+
+    .project .p-links a {
+        padding: 10px 8px;
+        border: 1px solid rgba(236, 239, 248, 0.12);
+        border-radius: 999px;
+        background: var(--grad);
+        color: var(--ink);
+        font-weight: 600;
+        transition: transform 0.35s var(--ease), box-shadow 0.35s,
+                    background 0.3s, border-color 0.3s;
+    }
+
+    .project .p-links a:hover {
+        color: var(--ink);
+        border-color: transparent;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(166, 107, 255, 0.3);
+    }
+
+    /* GitHub sits centered underneath View details and Live demo. */
+    .project .p-links a:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: min(100%, 170px);
+    }
+}
