@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arpan Maiti | Web Developer</title>
+    <meta name="description" content="Arpan Maiti - B.Tech CSE Student and aspiring Frontend / Full-Stack Developer" />
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <canvas id="net" aria-hidden="true"></canvas>
+
+    <!-- NAV -->
+    <header class="header">
+        <a href="#home" class="logo">Arpan's Portfolio<span>.</span></a>
+        <nav class="navbar" aria-label="Main">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certificates</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-copy">
+                <p class="status"><i></i> Open to internships and junior roles</p>
+                <h1 class="name" id="heroName" aria-label="Arpan Maiti">Arpan Maiti</h1>
+                <p class="role">B.Tech CSE student. <span class="typed" id="typed">Web developer</span><b
+                        class="caret"></b></p>
+                <p class="lead">
+                    I build clean, responsive and user-friendly web experiences. Right now I'm strengthening my
+                    JavaScript and
+                    Node.js while growing into full-stack development.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-solid">See my projects <i class="fa-solid fa-arrow-down"></i></a>
+                    <a href="Arpan_Maiti_resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-regular fa-file"></i> View resume
+                    </a>
+                    <div class="socials">
+                        <a href="https://github.com/arpanmaiti5820-creator" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/arpan-maiti-5438872b9" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The build loop -->
+            <div class="loop" aria-hidden="true">
+                <svg viewBox="0 0 400 400" class="loop-svg">
+                    <defs>
+                        <path id="ringPath" d="M200,200 m-165,0 a165,165 0 1,1 330,0 a165,165 0 1,1 -330,0" />
+                        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#ffd84d" />
+                            <stop offset="1" stop-color="#a66bff" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="200" cy="200" r="120" class="ring ring-in" />
+                    <circle cx="200" cy="200" r="190" class="ring ring-out" />
+                    <g class="spin">
+                        <text>
+                            <textPath href="#ringPath" startOffset="0">idea → code → build → learn → repeat → idea →
+                                code →</textPath>
+                        </text>
+                    </g>
+                </svg>
+                <div class="core">
+                    <span>&lt;/&gt;</span>
+                    <small>turning ideas into real projects</small>
+                </div>
+                <div class="code-note">
+                    <span class="k">const</span> mindset = {<br />
+                    &nbsp;&nbsp;learn: <b>true</b>,<br />
+                    &nbsp;&nbsp;build: <b>true</b>,<br />
+                    &nbsp;&nbsp;improve: <b>true</b>,<br />
+                    &nbsp;&nbsp;repeat: <b>true</b><br />};
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-hint" aria-label="Scroll to About"><i
+                    class="fa-solid fa-chevron-down"></i></a>
+        </section>
+
+        <!-- GROWTH PATH (a real sequence) -->
+        <section class="path" aria-label="How I grow">
+            <ol class="path-list" data-r>
+                <li><span class="n">1</span><strong>Learn</strong>
+                    <p>HTML, CSS, JavaScript</p>
+                </li>
+                <li><span class="n">2</span><strong>Build</strong>
+                    <p>Projects and real-world skills</p>
+                </li>
+                <li><span class="n">3</span><strong>Improve</strong>
+                    <p>React, Node.js, full stack</p>
+                </li>
+                <li><span class="n">4</span><strong>Grow</strong>
+                    <p>A better developer every day</p>
+                </li>
+            </ol>
+        </section>
+
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track" id="marquee">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span>
+                <span>Mongoose</span><span>REST API</span><span>JWT</span><span>Google
+                    OAuth</span><span>Python</span><span>Java</span><span>C</span><span>GitHub</span>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <section id="about" class="section">
+            <h2 class="title" data-r>Building my future in tech.</h2>
+            <div class="about-grid">
+                <div class="about-text" data-r>
+                    <p class="big">
+                        I'm a third-year B.Tech Computer Science and Engineering student at MCKV Institute of
+                        Engineering,
+                        affiliated with MAKAUT.
+                    </p>
+                    <p>I have a foundation in HTML, CSS, Python, C and Java, and I'm currently developing my skills in
+                        JavaScript and Node.js.</p>
+                    <p>
+                        I'm interested in frontend, web and full-stack development. I want practical experience, a
+                        chance to contribute to
+                        real-world projects, and steady technical growth.
+                    </p>
+                    <ul class="traits">
+                        <li><strong>Problem solver</strong><span>Turning problems into practical solutions</span></li>
+                        <li><strong>Frontend focus</strong><span>Clean, responsive web experiences</span></li>
+                        <li><strong>Continuous learner</strong><span>Currently exploring React and Node.js</span></li>
+                        <li><strong>Project driven</strong><span>Learning through hands-on development</span></li>
+                    </ul>
+                </div>
+
+                <aside class="learning" data-r>
+                    <h3><i class="fa-solid fa-laptop-code"></i> Currently learning</h3>
+                    <div class="meter" style="--v:70">
+                        <div><span>JavaScript</span><b>70%</b></div><i></i>
+                    </div>
+                    <div class="meter" style="--v:45">
+                        <div><span>Node.js</span><b>50%</b></div><i></i>
+                    </div>
+                    <div class="meter" style="--v:30">
+                        <div><span>Express.js</span><b>45%</b></div><i></i>
+                    </div>
+                    <p class="live"><i></i> Building, learning, improving</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="section">
+            <h2 class="title" data-r>My technical toolkit.</h2>
+            <div class="bento">
+                <article class="tile t-front spot" data-r>
+                    <i class="fa-solid fa-globe ico"></i>
+                    <h3>Frontend development</h3>
+                    <p>Building responsive web interfaces and growing into full-stack development.</p>
+                    <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                </article>
+                <article class="tile t-back spot" data-r>
+                    <i class="fa-solid fa-server ico"></i>
+                    <h3>Backend development</h3>
+                    <p>Creating APIs, authentication and server logic for full-stack apps.</p>
+                    <div class="tags"><span>Node.js</span><span>Express.js</span><span>REST
+                            API</span><span>JWT</span><span>Google OAuth</span></div>
+                </article>
+                <article class="tile t-prog spot" data-r>
+                    <i class="fa-solid fa-code ico"></i>
+                    <h3>Programming</h3>
+                    <p>Fundamentals and problem-solving.</p>
+                    <div class="tags"><span>C</span><span>Python</span><span>Java</span></div>
+                </article>
+                <article class="tile t-db spot" data-r>
+                    <i class="fa-solid fa-database ico"></i>
+                    <h3>Database</h3>
+                    <p>Working with application data.</p>
+                    <div class="tags"><span>MongoDB</span><span>Mongoose</span></div>
+                </article>
+                <article class="tile t-tools spot" data-r>
+                    <i class="fa-solid fa-toolbox ico"></i>
+                    <h3>Tools</h3>
+                    <p>Workflow and version control.</p>
+                    <div class="tags"><span>VS Code</span><span>GitHub</span><span>Render</span></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="section">
+            <h2 class="title" data-r>My academic journey.</h2>
+            <div class="timeline" id="timeline">
+                <div class="t-line"><i id="tFill"></i></div>
+                <div class="t-item" data-r>
+                    <span class="dot"></span>
+                    <div class="t-card">
+                        <small>Secondary</small>
+                        <h3>Class X</h3>
+                        <p>Board: WBBSE</p>
+                        <b class="score"><span class="count" data-to="84" data-suffix="%">84%</span></b>
+                    </div>
+                </div>
+                <div class="t-item" data-r>
+                    <span class="dot"></span>
+                    <div class="t-card">
+                        <small>Higher secondary</small>
+                        <h3>Class XII</h3>
+                        <p>Board: WBCHSE</p>
+                        <b class="score"><span class="count" data-to="76" data-suffix="%">76%</span></b>
+                    </div>
+                </div>
+                <div class="t-item" data-r>
+                    <span class="dot now"></span>
+                    <div class="t-card main">
+                        <small>3rd year</small>
+                        <h3>B.Tech, Computer Science &amp; Engineering</h3>
+                        <p>MCKV Institute of Engineering · Affiliated with MAKAUT</p>
+                        <b class="score"><span class="count" data-to="8.0" data-dec="1">8.0</span> <em>CGPA</em></b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course" data-r>
+                <div class="course-head">
+                    <h3>Core computer science</h3>
+                    <p>Key concepts from my B.Tech CSE journey.</p>
+                </div>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <h3>Data Structures &amp; Algorithms</h3>
+                        <div class="course-topics"><span>Arrays</span><span>Linked
+                                Lists</span><span>Stacks</span><span>Queues</span><span>Trees</span><span>Graphs</span><span>Sorting</span><span>Searching</span>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <i class="fa-solid fa-cubes"></i>
+                        <h3>Object-Oriented Programming</h3>
+                        <div class="course-topics"><span>Classes &amp;
+                                Objects</span><span>Inheritance</span><span>Polymorphism</span><span>Encapsulation</span><span>Abstraction</span><span>Exception
+                                Handling</span></div>
+                    </div>
+                    <div class="course-card">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>Machine Learning</h3>
+                        <div class="course-topics"><span>Supervised Learning</span><span>Linear
+                                Regression</span><span>Logistic Regression</span><span>SVM</span><span>Decision
+                                Trees</span><span>Feature Scaling</span></div>
+                    </div>
+                    <div class="course-card">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <h3>Design &amp; Analysis of Algorithms</h3>
+                        <div class="course-topics"><span>Complexity Analysis</span><span>Recursion</span><span>Divide
+                                &amp; Conquer</span><span>Greedy Algorithms</span><span>Dynamic Programming</span></div>
+                    </div>
+                    <div class="course-card">
+                        <i class="fa-solid fa-server"></i>
+                        <h3>Operating Systems</h3>
+                        <div class="course-topics"><span>Processes</span><span>Threads</span><span>CPU
+                                Scheduling</span><span>Deadlocks</span><span>Memory Management</span><span>File
+                                Systems</span></div>
+                    </div>
+                    <div class="course-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>Computer Architecture</h3>
+                        <div class="course-topics"><span>CPU</span><span>Memory
+                                Hierarchy</span><span>Cache</span><span>Instruction
+                                Cycle</span><span>I/O</span><span>Pipelining</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section">
+            <h2 class="title" data-r>What I'm building.</h2>
+            <div class="projects">
+
+                <article class="project spot" data-r>
+                    <div class="p-visual"><i class="fa-solid fa-note-sticky"></i></div>
+                    <div class="p-body">
+                        <span class="kind">Full-stack project</span>
+                        <h3>CollabNotes</h3>
+                        <p>A collaborative notes platform built with Node.js, Express.js and MongoDB, with JWT and
+                            Google OAuth sign-in. Create, organize, search and share notes, manage folders and
+                            attachments, and use favorites, likes and trash/restore.</p>
+                        <div class="tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>JWT</span><span>Google
+                                OAuth</span></div>
+                        <div class="p-links">
+                            <button type="button" class="btn btn-solid sm" data-modal="collabnotesModal"><i
+                                    class="fa-solid fa-circle-info"></i> View details</button>
+                            <a href="https://collabnotes-q6qq.onrender.com" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i> Live demo</a>
+                            <a href="https://github.com/arpanmaiti5820-creator/CollabNotes" target="_blank"
+                                rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project spot rev" data-r>
+                    <div class="p-visual alt"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="p-body">
+                        <span class="kind">Full-stack project</span>
+                        <h3>ExpenseTracker</h3>
+                        <p>An expense management app built with HTML, CSS, JavaScript, Node.js, Express.js and MongoDB.
+                            Manage expenses, edit records, restore deleted entries and permanently delete them, with
+                            persistent data storage.</p>
+                        <div class="tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>REST
+                                API</span><span>Google OAuth</span></div>
+                        <div class="p-links">
+                            <button type="button" class="btn btn-solid sm" data-modal="expenseTrackerModal"><i
+                                    class="fa-solid fa-circle-info"></i> View details</button>
+                            <a href="https://arpanmaiti5820-creator.github.io/ExpenceTracker/" target="_blank"
+                                rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                                demo</a>
+                            <a href="https://github.com/arpanmaiti5820-creator/ExpenceTracker/" target="_blank"
+                                rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project spot" data-r>
+                    <div class="p-visual alt2"><i class="fa-solid fa-robot"></i></div>
+                    <div class="p-body">
+                        <span class="kind">Frontend project</span>
+                        <h3>AI-Assisted Web Application</h3>
+                        <p>A responsive web app developed with the Replit AI Agent, with an interactive interface,
+                            structured application logic and user-focused functionality.</p>
+                        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Replit AI</span>
+                        </div>
+                        <div class="p-links">
+                            <a href="https://learn-ai-education-platform--arpanmaiti472.replit.app" target="_blank"
+                                rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                                demo</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="section">
+            <h2 class="title" data-r>Learning beyond the classroom.</h2>
+            <div class="tickets">
+                <a class="ticket" href="HTML_certificate.pdf" target="_blank" rel="noopener noreferrer" data-r>
+                    <i class="fa-brands fa-html5"></i>
+                    <div>
+                        <h3>Introduction to HTML</h3>
+                        <p>May 2026</p>
+                    </div><em class="open">View <i class="fa-solid fa-arrow-up-right-from-square"></i></em>
+                </a>
+                <a class="ticket" href="CSS_certificate.pdf" target="_blank" rel="noopener noreferrer" data-r>
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <div>
+                        <h3>Introduction to CSS</h3>
+                        <p>May 2026</p>
+                    </div><em class="open">View <i class="fa-solid fa-arrow-up-right-from-square"></i></em>
+                </a>
+                <div class="ticket wip" data-r>
+                    <i class="fa-solid fa-layer-group"></i>
+                    <div>
+                        <h3>Full Stack Developer Course</h3>
+                        <p>Currently learning</p>
+                    </div><em class="open"><i class="fa-solid fa-spinner"></i> In progress</em>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <h2 class="title" data-r>My experience.</h2>
+            <div class="xp">
+                <article class="xp-item" data-r>
+                    <span class="dot"></span>
+                    <time>03 Sep 2026 – 13 Sep 2026</time>
+                    <h3>Frontend Developer, InAmigos Foundation</h3>
+                    <p class="sub">Web Development Internship</p>
+                    <p>Completed an internship focused on frontend development: building responsive web interfaces and
+                        strengthening practical skills in HTML, CSS and JavaScript.</p>
+                    <div class="p-links">
+                        <a href="DOC-20260907-WA0030 (1).pdf" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-solid fa-file-pdf"></i> Offer letter</a>
+                        <a href="InAmigos_Certificate.pdf" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-solid fa-file-pdf"></i> Certificate</a>
+                    </div>
+                </article>
+
+                <article class="xp-item" data-r>
+                    <span class="dot now"></span>
+                    <time>10 Oct 2026 – Present</time>
+                    <h3>Full Stack Development Intern, CodeNova</h3>
+                    <p class="sub">Project-based internship, remote</p>
+                    <p>Selected for a four-week, project-based internship with CodeNova, a student-led technology
+                        community. The program covers practical project development, collaboration, assigned tasks,
+                        documentation and professional communication.</p>
+                    <div class="p-links">
+                        <a href="Offer-letter-Arpan Maiti.pdf" target="_blank" rel="noopener noreferrer"><i
+                                class="fa-solid fa-file-pdf"></i> Offer letter</a>
+                    </div>
+                </article>
+
+                <article class="xp-item" data-r>
+                    <span class="dot"></span>
+                    <time>Hackathons</time>
+                    <h3>Hackathon participation</h3>
+                    <p>Took part in 2 hackathons, gaining exposure to collaborative problem-solving and project
+                        development.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section contact">
+            <h2 class="title big-title" data-r>Let's build something together.</h2>
+            <p class="contact-lead" data-r>I'm looking for opportunities to gain practical experience and grow as a web
+                developer.</p>
+            <div class="mail-row" data-r>
+                <a href="mailto:arpanmaiti5820@gmail.com" class="mail" id="mail"><span>arpanmaiti5820@gmail.com</span><i
+                        class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <button type="button" class="btn btn-ghost sm" id="copyMail"><i class="fa-regular fa-copy"></i> Copy
+                    email</button>
+            </div>
+            <div class="contact-info" data-r>
+                <span><i class="fa-solid fa-location-dot"></i> Howrah, West Bengal</span>
+                <span><i class="fa-solid fa-phone"></i> +91 9091689792</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#home" class="logo">AM<span>.</span></a>
+        <p>© <span id="year"></span> Arpan Maiti. All rights reserved.</p>
+        <div class="socials">
+            <a href="https://github.com/arpanmaiti5820-creator" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/arpan-maiti-5438872b9" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div class="modal" id="collabnotesModal" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="collabnotesTitle">
+            <button type="button" class="modal-close" aria-label="Close project details">&times;</button>
+            <span class="kind">Full-stack project</span>
+            <h2 id="collabnotesTitle">CollabNotes</h2>
+            <p>A full-stack collaborative notes platform built to create, organize, search and share notes.</p>
+            <h3>Project overview</h3>
+            <p>CollabNotes helps users manage their notes, organize folders, save favorites, manage attachments and
+                restore deleted notes.</p>
+            <h3>How to use</h3>
+            <ol>
+                <li>Register or sign in to your account.</li>
+                <li>Create notes and add their titles and content.</li>
+                <li>Organize notes into folders.</li>
+                <li>Search notes and mark important notes as favorites.</li>
+                <li>Use Trash to manage deleted notes.</li>
+            </ol>
+            <h3>Project screenshots</h3>
+            <div class="gallery">
+                <figure><img src="screenshots/Screenshot 2026-10-15 123054.png"
+                        alt="CollabNotes dashboard showing statistics and recent notes" loading="lazy" />
+                    <figcaption>Dashboard: notes, favorites, folders and recent activity</figcaption>
+                </figure>
+                <figure><img src="screenshots/Screenshot 2026-10-15 123119.png" alt="CollabNotes edit note interface"
+                        loading="lazy" />
+                    <figcaption>Note editor: titles, content, folders and visibility</figcaption>
+                </figure>
+                <figure><img src="screenshots/Screenshot 2026-10-15 123136.png"
+                        alt="CollabNotes sidebar showing navigation and folders" loading="lazy" />
+                    <figcaption>Navigation: All Notes, Favorites, Trash and custom folders</figcaption>
+                </figure>
+            </div>
+            <h3>Technology stack</h3>
+            <div class="tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>JWT</span><span>Google
+                    OAuth</span></div>
+        </div>
+    </div>
+
+    <div class="modal" id="expenseTrackerModal" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="expenseTitle">
+            <button type="button" class="modal-close" aria-label="Close ExpenseTracker details">&times;</button>
+            <span class="kind">Full-stack project</span>
+            <h2 id="expenseTitle">ExpenseTracker</h2>
+            <p>A full-stack expense management application that helps users organize expense records through a
+                responsive interface.</p>
+            <h3>Project overview</h3>
+            <p>ExpenseTracker provides expense management with backend data persistence. Users can manage expense
+                records, edit entries, restore deleted expenses and permanently delete records.</p>
+            <h3>Key features</h3>
+            <ul>
+                <li>Add and manage expense records</li>
+                <li>Edit existing expenses</li>
+                <li>Validate expense amounts and dates</li>
+                <li>Move deleted expenses to Trash and restore them</li>
+                <li>Permanently delete unwanted records</li>
+                <li>Store application data in MongoDB</li>
+            </ul>
+            <h3>Project screenshots</h3>
+            <div class="gallery">
+                <figure><img src="./screenshots/Screenshot 2026-10-16 231459.png" alt="ExpenseTracker login page"
+                        loading="lazy" />
+                    <figcaption>Login page</figcaption>
+                </figure>
+                <figure><img src="./screenshots/Screenshot 2026-10-16 231549.png"
+                        alt="ExpenseTracker financial dashboard" loading="lazy" />
+                    <figcaption>Financial dashboard</figcaption>
+                </figure>
+                <figure><img src="./screenshots/Screenshot 2026-10-16 231618.png"
+                        alt="ExpenseTracker analytics and spending charts" loading="lazy" />
+                    <figcaption>Analytics &amp; spending insights</figcaption>
+                </figure>
+                <figure><img src="./screenshots/Screenshot 2026-10-16 231716.png"
+                        alt="ExpenseTracker add transaction form" loading="lazy" />
+                    <figcaption>Add transaction</figcaption>
+                </figure>
+            </div>
+            <h3>Technology stack</h3>
+            <div class="tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>REST
+                    API</span></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+    <script src="script.js"></script>
+</body>
+
+</html>
