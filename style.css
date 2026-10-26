@@ -581,6 +581,35 @@ main,
     color: var(--slate);
 }
 
+/* portrait inside the loop */
+.photo {
+    position: absolute;
+    inset: 16%;
+    border-radius: 50%;
+    box-shadow: 0 0 80px rgba(166, 107, 255, 0.35), 0 0 50px rgba(255, 111, 181, 0.16);
+}
+
+.photo::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(#ff6fb5, #a66bff, #7cc4ff, #a66bff, #ff6fb5);
+    animation: spin 7s linear infinite;
+}
+
+.photo img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 24%;
+    border: 4px solid #070a12;
+    background: var(--mid);
+}
+
 .code-note {
     position: absolute;
     right: -4%;
@@ -2239,7 +2268,6 @@ main,
         width: min(100%, 170px);
     }
 }
-
 
 /* TaskFlow Render loading notice */
 .demo-note {
