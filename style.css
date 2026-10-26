@@ -2239,3 +2239,50 @@ main,
         width: min(100%, 170px);
     }
 }
+
+
+/* TaskFlow Render loading notice */
+.demo-note {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.demo-note i {
+    margin-right: 5px;
+    color: #a5b4fc;
+}
+
+/* TaskFlow screenshot gallery */
+#taskflowModal .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+#taskflowModal .gallery figure {
+    min-width: 0;
+    margin: 0;
+}
+
+#taskflowModal .gallery img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+#taskflowModal .gallery figcaption {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    #taskflowModal .gallery {
+        grid-template-columns: 1fr;
+    }
+}
