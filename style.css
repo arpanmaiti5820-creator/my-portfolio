@@ -1,6 +1,6 @@
 /* =========================================
-   ARPAN MAITI: MIDNIGHT + PINK-TO-PURPLE THEME
-   Ink #070A12 · Midnight #0D1324 · Purple #A66BFF · Pink #FF6FB5 · Mist #ECEFF8 · Slate #8E97B0
+   ARPAN MAITI: MIDNIGHT + BLUE-TO-PURPLE THEME
+   Ink #070A12 · Midnight #0D1324 · Purple #A66BFF · Blue #5AA9FF · Mist #ECEFF8 · Slate #8E97B0
 ========================================= */
 :root {
     --ink: #070a12;
@@ -8,14 +8,14 @@
     --raise: #121a30;
     --coral: #a66bff;
     /* purple */
-    --gold: #ff6fb5;
-    /* pink */
+    --gold: #5aa9ff;
+    /* blue */
     --ice: #7cc4ff;
     --mist: #eceff8;
     --slate: #8e97b0;
     --line: rgba(236, 239, 248, 0.1);
     --grad: linear-gradient(120deg, var(--gold), var(--coral));
-    /* pink to purple */
+    /* blue to purple */
     --display: "Bricolage Grotesque", system-ui, sans-serif;
     --body: "Hanken Grotesk", system-ui, sans-serif;
     --wrap: 1120px;
@@ -101,7 +101,7 @@ body::before {
     background:
         radial-gradient(60vw 50vh at 85% -10%, rgba(166, 107, 255, 0.16), transparent 60%),
         radial-gradient(50vw 50vh at -5% 40%, rgba(139, 92, 246, 0.10), transparent 60%),
-        radial-gradient(50vw 40vh at 70% 110%, rgba(255, 111, 181, 0.09), transparent 60%);
+        radial-gradient(50vw 40vh at 70% 110%, rgba(90, 169, 255, 0.09), transparent 60%);
 }
 
 main,
@@ -279,8 +279,8 @@ main,
     border-radius: 999px;
     font-size: 0.82rem;
     color: var(--gold);
-    background: rgba(255, 111, 181, 0.08);
-    border: 1px solid rgba(255, 111, 181, 0.2);
+    background: rgba(90, 169, 255, 0.08);
+    border: 1px solid rgba(90, 169, 255, 0.2);
 }
 
 .kind {
@@ -564,7 +564,7 @@ main,
     padding: 14px;
     background: radial-gradient(circle at 30% 25%, #1b2547, var(--mid) 70%);
     border: 1px solid var(--line);
-    box-shadow: 0 0 80px rgba(166, 107, 255, 0.28), inset 0 0 40px rgba(255, 111, 181, 0.08);
+    box-shadow: 0 0 80px rgba(166, 107, 255, 0.28), inset 0 0 40px rgba(90, 169, 255, 0.08);
 }
 
 .core span {
@@ -586,7 +586,7 @@ main,
     position: absolute;
     inset: 16%;
     border-radius: 50%;
-    box-shadow: 0 0 80px rgba(166, 107, 255, 0.35), 0 0 50px rgba(255, 111, 181, 0.16);
+    box-shadow: 0 0 80px rgba(166, 107, 255, 0.35), 0 0 50px rgba(90, 169, 255, 0.16);
 }
 
 .photo::before {
@@ -594,7 +594,7 @@ main,
     position: absolute;
     inset: -6px;
     border-radius: 50%;
-    background: conic-gradient(#ff6fb5, #a66bff, #7cc4ff, #a66bff, #ff6fb5);
+    background: conic-gradient(#5aa9ff, #a66bff, #7cc4ff, #a66bff, #5aa9ff);
     animation: spin 7s linear infinite;
 }
 
@@ -916,7 +916,7 @@ main,
 }
 
 .tile:hover {
-    border-color: rgba(255, 111, 181, 0.45);
+    border-color: rgba(90, 169, 255, 0.45);
     transform: translateY(-4px);
 }
 
@@ -1045,17 +1045,17 @@ main,
 .dot.now {
     background: var(--gold);
     border-color: var(--gold);
-    box-shadow: 0 0 0 0 rgba(255, 111, 181, 0.6);
+    box-shadow: 0 0 0 0 rgba(90, 169, 255, 0.6);
     animation: pulse2 2s infinite;
 }
 
 @keyframes pulse2 {
     70% {
-        box-shadow: 0 0 0 12px rgba(255, 111, 181, 0);
+        box-shadow: 0 0 0 12px rgba(90, 169, 255, 0);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(255, 111, 181, 0);
+        box-shadow: 0 0 0 0 rgba(90, 169, 255, 0);
     }
 }
 
@@ -1151,7 +1151,7 @@ main,
 
 .course-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(255, 111, 181, 0.5);
+    border-color: rgba(90, 169, 255, 0.5);
     background: var(--raise);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
 }
@@ -1284,11 +1284,11 @@ main,
 }
 
 .p-visual.alt {
-    background: linear-gradient(135deg, #ff6fb5, #a66bff);
+    background: linear-gradient(135deg, #5aa9ff, #a66bff);
 }
 
 .p-visual.alt2 {
-    background: linear-gradient(135deg, #8b5cf6, #ff6fb5);
+    background: linear-gradient(135deg, #8b5cf6, #5aa9ff);
 }
 
 .p-visual::before {
@@ -1364,15 +1364,7 @@ main,
     border-radius: 18px;
     border: 1px solid var(--line);
     background-color: var(--mid);
-    background-image: linear-gradient(rgba(166, 107, 255, 0.16), rgba(166, 107, 255, 0.16));
-    background-repeat: no-repeat;
-    background-size: 0 100%;
-    transition: background-size 0.6s ease, border-color 0.3s ease;
-}
-
-.ticket:hover {
-    background-size: 100% 100%;
-    border-color: rgba(166, 107, 255, 0.5);
+    transition: transform .35s var(--ease), box-shadow .4s, border-color .4s;
 }
 
 .ticket>i {
@@ -1382,10 +1374,6 @@ main,
     font-size: 1.8rem;
     color: var(--coral);
     transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
-}
-
-.ticket:hover>i {
-    transform: scale(1.15) rotate(-8deg);
 }
 
 .ticket>div {
@@ -1413,12 +1401,84 @@ main,
     font-size: 1rem;
 }
 
-.ticket:hover .open {
-    transform: translate(4px, -4px);
-}
-
 .ticket.wip .open i {
     animation: spin 3s linear infinite;
+}
+
+/* certificate cards (new layout) */
+.ticket.cert {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 26px 26px 24px;
+}
+
+.ticket.cert .cert-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ticket.cert .cert-head>i {
+    flex: none;
+    width: 36px;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--coral);
+}
+
+.ticket.cert .cert-head>div {
+    flex: 1;
+    min-width: 0;
+}
+
+.ticket.cert h3 {
+    font-size: 1.2rem;
+}
+
+.ticket.cert .cert-date {
+    display: block;
+    margin-top: 2px;
+    color: var(--slate);
+    font-size: 0.85rem;
+}
+
+.ticket.cert>p {
+    flex: 1;
+    line-height: 1.6;
+}
+
+.cert-btn {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(166, 107, 255, 0.35);
+    background: rgba(166, 107, 255, 0.08);
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: transform 0.35s var(--ease), background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.cert-btn i {
+    color: var(--coral);
+    transition: color 0.3s, transform 0.35s var(--ease);
+}
+
+.cert-btn:hover {
+    transform: translateY(-4px);
+    color: var(--ink);
+    background: var(--grad);
+    border-color: transparent;
+    box-shadow: 0 10px 26px rgba(166, 107, 255, 0.4);
+}
+
+.cert-btn:hover i {
+    color: var(--ink);
+    transform: scale(1.15) rotate(-6deg);
 }
 
 /* ---------- experience ---------- */
@@ -2439,7 +2499,7 @@ main,
 
 @keyframes halo {
     50% {
-        box-shadow: 0 0 110px rgba(166, 107, 255, .5), 0 0 70px rgba(255, 111, 181, .28);
+        box-shadow: 0 0 110px rgba(166, 107, 255, .5), 0 0 70px rgba(90, 169, 255, .28);
     }
 }
 
@@ -2455,6 +2515,7 @@ main,
 .t-card:hover,
 .xp-item:hover,
 .course-card:hover,
+.ticket:hover,
 .project:hover {
     box-shadow: var(--glow);
     border-color: rgba(166, 107, 255, .45);
@@ -2551,7 +2612,7 @@ main,
     position: absolute;
     inset: -50%;
     opacity: .5;
-    background: conic-gradient(from 0deg, transparent 0 8%, rgba(166, 107, 255, .14) 12%, transparent 18% 33%, rgba(255, 111, 181, .1) 38%, transparent 44% 58%, rgba(124, 196, 255, .08) 63%, transparent 70% 85%, rgba(166, 107, 255, .12) 90%, transparent 96%);
+    background: conic-gradient(from 0deg, transparent 0 8%, rgba(166, 107, 255, .14) 12%, transparent 18% 33%, rgba(90, 169, 255, .1) 38%, transparent 44% 58%, rgba(124, 196, 255, .08) 63%, transparent 70% 85%, rgba(166, 107, 255, .12) 90%, transparent 96%);
     -webkit-mask: radial-gradient(circle, #000 0, transparent 55%);
     mask: radial-gradient(circle, #000 0, transparent 55%);
     animation: spin 28s linear infinite;
@@ -2685,7 +2746,7 @@ main,
         transform: scale(2.6);
         letter-spacing: .25em;
         filter: blur(18px);
-        text-shadow: -14px 0 var(--gold), 14px 0 var(--ice);
+        text-shadow: -14px 0 var(--gold), 14px 0 var(--coral);
     }
 
     35% {
@@ -2694,7 +2755,7 @@ main,
 
     70% {
         filter: blur(0);
-        text-shadow: -3px 0 rgba(255, 111, 181, .7), 3px 0 rgba(124, 196, 255, .7);
+        text-shadow: -3px 0 rgba(90, 169, 255, .7), 3px 0 rgba(166, 107, 255, .7);
     }
 
     100% {
@@ -2990,4 +3051,9 @@ main,
 .intro-lock .hero-copy>*,
 .intro-lock .loop {
     animation-play-state: paused !important;
+}
+
+/* certificate cards: smaller cursor light than other cards */
+.ticket .glare {
+    background: radial-gradient(150px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .09), transparent 60%);
 }
