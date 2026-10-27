@@ -346,7 +346,7 @@ if (finePointer && !reduced) {
         intro.setAttribute("role", "dialog");
         intro.setAttribute("aria-label", "Intro");
         const chips = [["fa-brands fa-html5", "HTML"], ["fa-brands fa-css3-alt", "CSS"], ["fa-brands fa-js", "JavaScript"],
-            ["fa-brands fa-node-js", "Node.js"], ["fa-solid fa-server", "Express.js"], ["fa-solid fa-database", "MongoDB"]]
+        ["fa-brands fa-node-js", "Node.js"], ["fa-solid fa-server", "Express.js"], ["fa-solid fa-database", "MongoDB"]]
             .map(([ic, t], i) => `<span style="--i:${i}"><i class="${ic}"></i>${t}</span>`).join("");
         intro.innerHTML =
             '<div class="intro-panel top"></div><div class="intro-panel bottom"></div>' +
@@ -397,6 +397,8 @@ if (finePointer && !reduced) {
         addEventListener("keydown", (e) => { if (e.key === "Escape") finish(); });
         $(".intro-skip", intro).focus({ preventScroll: true });
     }
+
+    root.classList.remove("intro-pending"); /* intro is on screen now, so the cover can go */
 
     if (!finePointer || reduced) return;
 

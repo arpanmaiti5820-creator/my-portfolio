@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arpan Maiti | Web Developer</title>
     <meta name="description" content="Arpan Maiti - B.Tech CSE Student and aspiring Frontend / Full-Stack Developer" />
-    <script>document.documentElement.classList.add("js");</script>
+    <style>
+        html.intro-pending::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: #070a12
+        }
+    </style>
+    <script>(function (d) { var c = d.documentElement.classList; c.add("js"); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { c.add("intro-pending"); setTimeout(function () { c.remove("intro-pending") }, 4000) } })(document);</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
