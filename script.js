@@ -331,3 +331,109 @@ if (finePointer && !reduced) {
     size();
     if (reduced) { frame(); running = false; } else frame();
 })();
+
+/* =========================================
+   POLISH LAYER: intro, 3D tilt, magnetic buttons
+========================================= */
+(() => {
+    /* Netflix-style cinematic intro (about 10.5 seconds) with skip button */
+    const root = document.documentElement;
+    if (!reduced) {
+        root.classList.add("intro-lock");
+        document.body.classList.add("modal-open");
+        const intro = document.createElement("div");
+        intro.className = "intro";
+        intro.setAttribute("role", "dialog");
+        intro.setAttribute("aria-label", "Intro");
+        const chips = [["fa-brands fa-html5", "HTML"], ["fa-brands fa-css3-alt", "CSS"], ["fa-brands fa-js", "JavaScript"],
+            ["fa-brands fa-node-js", "Node.js"], ["fa-solid fa-server", "Express.js"], ["fa-solid fa-database", "MongoDB"]]
+            .map(([ic, t], i) => `<span style="--i:${i}"><i class="${ic}"></i>${t}</span>`).join("");
+        intro.innerHTML =
+            '<div class="intro-panel top"></div><div class="intro-panel bottom"></div>' +
+            '<div class="rays"></div>' +
+            '<div class="intro-stage">' +
+            '<div class="sc s1"><div class="ribbon"><i></i><i></i><i></i></div><div class="streak"></div>' +
+            '<h1 class="nf-name">Arpan Maiti</h1></div>' +
+            '<div class="sc s2"><div class="intro-photo"><img src="arpan.jpg" alt="" /></div>' +
+            '<p class="s2-sub">B.Tech CSE Student</p>' +
+            '<div class="intro-roles"><span>Web developer</span><span>Frontend builder</span><span>Full-stack learner</span><span>Problem solver</span></div></div>' +
+            `<div class="sc s3"><div class="chips">${chips}</div></div>` +
+            '<div class="sc s4"><p class="welcome">Welcome to my portfolio</p><div class="underline"></div></div></div>' +
+            '<button type="button" class="intro-skip">Skip intro <i class="fa-solid fa-forward"></i></button>' +
+            '<div class="intro-meter"><div class="intro-bar"><i></i></div><span class="intro-count">0%</span></div>';
+        document.body.appendChild(intro);
+
+        const bar = $(".intro-bar i", intro), count = $(".intro-count", intro);
+        const timers = [];
+        let finished = false, raf;
+        const finish = () => {
+            if (finished) return;
+            finished = true;
+            cancelAnimationFrame(raf);
+            timers.forEach(clearTimeout);
+            intro.classList.add("done");
+            setTimeout(() => {
+                root.classList.remove("intro-lock");
+                document.body.classList.remove("modal-open");
+            }, 500);
+            setTimeout(() => intro.remove(), 1700);
+        };
+        /* scene timeline in ms: [scene, show, hide] */
+        [["s1", 200, 3000], ["s2", 3000, 5800], ["s3", 5800, 8200], ["s4", 8200, 10300]].forEach(([s, on, off]) => {
+            const el = $("." + s, intro);
+            timers.push(setTimeout(() => el.classList.add("on"), on));
+            timers.push(setTimeout(() => el.classList.remove("on"), off));
+        });
+        timers.push(setTimeout(finish, 10500));
+        const t0 = performance.now(), dur = 10300;
+        const run = (t) => {
+            const k = Math.min(1, (t - t0) / dur);
+            bar.style.transform = `scaleX(${k})`;
+            count.textContent = Math.round(k * 100) + "%";
+            if (k < 1) raf = requestAnimationFrame(run);
+        };
+        raf = requestAnimationFrame(run);
+        $(".intro-skip", intro).addEventListener("click", finish);
+        addEventListener("keydown", (e) => { if (e.key === "Escape") finish(); });
+        $(".intro-skip", intro).focus({ preventScroll: true });
+    }
+
+    if (!finePointer || reduced) return;
+
+    /* 3D tilt + glare on cards */
+    $$(".tile, .t-card, .xp-item, .course-card").forEach((el) => {
+        el.classList.add("tilt");
+        if (getComputedStyle(el).position === "static") el.style.position = "relative";
+        const g = document.createElement("span");
+        g.className = "glare";
+        el.appendChild(g);
+        el.addEventListener("pointermove", (e) => {
+            if (el.hasAttribute("data-r")) return;
+            const r = el.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+            el.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 7}deg) rotateY(${(x - 0.5) * 9}deg) translateY(-4px)`;
+            el.style.setProperty("--gx", x * 100 + "%");
+            el.style.setProperty("--gy", y * 100 + "%");
+        });
+        el.addEventListener("pointerleave", () => (el.style.transform = ""));
+    });
+
+    /* hero portrait follows the cursor slightly */
+    const photo = $(".photo"), hero = $("#home");
+    if (photo && hero) {
+        hero.addEventListener("pointermove", (e) => {
+            const r = hero.getBoundingClientRect();
+            photo.style.translate = `${((e.clientX - r.left) / r.width - 0.5) * 14}px ${((e.clientY - r.top) / r.height - 0.5) * 14}px`;
+        });
+        hero.addEventListener("pointerleave", () => (photo.style.translate = ""));
+    }
+
+    /* magnetic solid buttons */
+    $$(".btn-solid").forEach((b) => {
+        b.addEventListener("pointermove", (e) => {
+            const r = b.getBoundingClientRect();
+            b.style.translate = `${(e.clientX - r.left - r.width / 2) * 0.12}px ${(e.clientY - r.top - r.height / 2) * 0.2}px`;
+        });
+        b.addEventListener("pointerleave", () => (b.style.translate = ""));
+    });
+})();
