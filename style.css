@@ -3146,3 +3146,323 @@ main,
     color: var(--ink);
     transform: scale(1.15) rotate(-6deg);
 }
+
+/* =========================================
+   SKILLS: icon cards with hover tooltip
+========================================= */
+.skill-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.skill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: rgba(236, 239, 248, .03);
+    outline: none;
+    cursor: default;
+    transition: transform .35s var(--ease), border-color .3s, background .3s, box-shadow .3s;
+}
+
+.skill:hover,
+.skill:focus {
+    z-index: 5;
+    transform: translateY(-3px);
+    border-color: rgb(var(--c) / .55);
+    background: rgb(var(--c) / .07);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .35), 0 0 24px rgb(var(--c) / .14);
+}
+
+.skill-ico {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    font-size: 1.35rem;
+    color: rgb(var(--c));
+    background: rgb(var(--c) / .14);
+    transition: transform .4s var(--ease);
+}
+
+.skill-ico b {
+    font: 800 1.5rem/1 var(--display);
+}
+
+.skill:hover .skill-ico,
+.skill:focus .skill-ico {
+    transform: scale(1.08) rotate(-6deg);
+}
+
+.skill-txt {
+    min-width: 0;
+}
+
+.skill-txt strong {
+    display: block;
+    font: 700 1rem/1.25 var(--display);
+    color: var(--mist);
+}
+
+.skill-txt small {
+    display: block;
+    margin-top: 4px;
+    font: 500 .74rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--coral);
+}
+
+/* tooltip: shows how the skill is used in my projects */
+.skill::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 12px);
+    z-index: 6;
+    width: max-content;
+    max-width: 210px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #05070d;
+    border: 1px solid rgba(166, 107, 255, .4);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .55);
+    color: var(--mist);
+    font: 500 .82rem/1.45 var(--body);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 6px);
+    transition: opacity .25s, transform .3s var(--ease), visibility .25s;
+}
+
+.skill::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 7px);
+    z-index: 7;
+    width: 10px;
+    height: 10px;
+    background: #05070d;
+    border-right: 1px solid rgba(166, 107, 255, .4);
+    border-bottom: 1px solid rgba(166, 107, 255, .4);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 6px) rotate(45deg);
+    transition: opacity .25s, transform .3s var(--ease), visibility .25s;
+}
+
+.skill:hover::after,
+.skill:focus::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.skill:hover::before,
+.skill:focus::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) rotate(45deg);
+}
+
+/* =========================================
+   CONTACT: info cards + message form
+========================================= */
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: stretch;
+    text-align: left;
+}
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.c-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 22px;
+    border-radius: 20px;
+    background: linear-gradient(160deg, var(--raise), var(--mid));
+    border: 1px solid var(--line);
+    transition: transform .4s var(--ease), border-color .35s, box-shadow .4s;
+}
+
+.c-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(90, 169, 255, .45);
+    box-shadow: var(--glow);
+}
+
+.c-ico {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    font-size: 1.15rem;
+    color: var(--gold);
+    background: rgba(90, 169, 255, .12);
+}
+
+.c-body {
+    min-width: 0;
+    flex: 1;
+}
+
+.c-label {
+    display: block;
+    margin-bottom: 2px;
+    font: 600 .72rem var(--body);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--slate);
+}
+
+.c-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.c-val {
+    display: inline-block;
+    font: 600 1rem/1.4 var(--body);
+    color: var(--mist);
+    overflow-wrap: anywhere;
+    transition: transform .2s ease-out, color .25s;
+    will-change: transform;
+}
+
+a.c-val:hover {
+    color: var(--gold);
+}
+
+.c-copy {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--ink);
+    color: var(--slate);
+    cursor: pointer;
+    transition: color .25s, border-color .25s, transform .3s var(--ease);
+}
+
+.c-copy:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.c-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 34px;
+    border-radius: 26px;
+    background: linear-gradient(160deg, var(--raise), var(--mid));
+    border: 1px solid var(--line);
+}
+
+.c-field label {
+    display: block;
+    margin-bottom: 8px;
+    font: 700 .95rem var(--body);
+    color: var(--mist);
+}
+
+.c-field input,
+.c-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--ink);
+    color: var(--mist);
+    font: 400 1rem var(--body);
+    transition: border-color .25s, box-shadow .25s;
+}
+
+.c-field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.c-field input::placeholder,
+.c-field textarea::placeholder {
+    color: var(--slate);
+    opacity: .75;
+}
+
+.c-field input:focus,
+.c-field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(90, 169, 255, .15);
+}
+
+.c-form .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.c-form .btn:disabled {
+    opacity: .7;
+    cursor: progress;
+}
+
+@media (max-width: 860px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .c-form {
+        padding: 24px 20px;
+    }
+
+    .c-card {
+        padding: 16px 18px;
+    }
+}
+
+
+/* skills: let the cards fill each tile evenly (no gap above them) */
+.skill-list {
+    margin-top: 8px;
+    padding-top: 0;
+    flex: 1;
+    grid-auto-rows: 1fr;
+}
+
+@media (min-width: 961px) {
+    .t-front .skill-list {
+        grid-template-columns: 1fr;
+    }
+}

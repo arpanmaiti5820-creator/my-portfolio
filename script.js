@@ -251,6 +251,35 @@ $$(".spot").forEach((card) => {
         try { await navigator.clipboard.writeText(mail); say("Email copied"); }
         catch { say("Copy failed. Select the email and copy it."); }
     });
+
+    /* Contact form: sends the message straight to my inbox (FormSubmit) */
+    const form = $("#contactForm");
+    if (form) {
+        const btn = $("#cfSend"), label = $("span", btn);
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            btn.disabled = true;
+            label.textContent = "Sending...";
+            try {
+                const res = await fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: new FormData(form),
+                });
+                const data = await res.json();
+                if (res.ok && String(data.success) === "true") {
+                    say("Message sent. Thank you!");
+                    form.reset();
+                } else throw new Error(data.message || "Failed");
+            } catch {
+                say("Could not send. Please email me directly.");
+            } finally {
+                btn.disabled = false;
+                label.textContent = "Send Message";
+            }
+        });
+    }
 })();
 
 /* ---------- Desktop-only: cursor glow + magnetic email button ---------- */
