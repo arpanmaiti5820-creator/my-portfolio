@@ -3111,12 +3111,6 @@ main,
     color: var(--gold);
 }
 
-.ticket.cert:hover .cert-btn,
-.ticket.cert:active .cert-btn {
-    border-color: rgba(90, 169, 255, .5);
-    background: rgba(90, 169, 255, .12);
-}
-
 /* touch screens: no tilt, so give a lift and a press effect instead */
 @media (hover: none) {
     .ticket.cert:active {
@@ -3135,4 +3129,20 @@ main,
         justify-content: center;
         min-height: 44px;
     }
+}
+
+/* certificate button: same hover as before (gradient fill, lift, glow) */
+.ticket.cert .cert-btn:hover,
+.ticket.cert .cert-btn:active {
+    transform: translateY(-4px);
+    color: var(--ink);
+    background: var(--grad);
+    border-color: transparent;
+    box-shadow: 0 10px 26px rgba(166, 107, 255, 0.4);
+}
+
+.ticket.cert .cert-btn:hover i,
+.ticket.cert .cert-btn:active i {
+    color: var(--ink);
+    transform: scale(1.15) rotate(-6deg);
 }
