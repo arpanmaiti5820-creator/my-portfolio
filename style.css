@@ -132,7 +132,7 @@ main,
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(circle, rgba(166, 107, 255, 0.12), transparent 65%);
+    background: radial-gradient(circle, rgba(166, 107, 255, 0.07), transparent 65%);
     opacity: 0;
     transition: opacity 0.4s;
 }
@@ -324,7 +324,7 @@ main,
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.35s;
-    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(166, 107, 255, 0.14), transparent 60%);
+    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(166, 107, 255, 0.08), transparent 60%);
 }
 
 .spot:hover::after {
@@ -1527,7 +1527,7 @@ main,
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(500px 220px at 0% 50%, rgba(166, 107, 255, 0.16), transparent 70%);
+    background: radial-gradient(500px 220px at 0% 50%, rgba(166, 107, 255, 0.10), transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -2379,7 +2379,7 @@ main,
    POLISH LAYER: same palette, more motion & depth
 ========================================= */
 :root {
-    --glow: 0 0 0 1px rgba(166, 107, 255, .35), 0 18px 50px rgba(166, 107, 255, .22);
+    --glow: 0 0 0 1px rgba(166, 107, 255, .28), 0 16px 40px rgba(166, 107, 255, .13);
 }
 
 .name .ch.last {
@@ -2528,7 +2528,7 @@ main,
     opacity: 0;
     transition: opacity .3s;
     border-radius: inherit;
-    background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .09), transparent 60%);
+    background: radial-gradient(210px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .05), transparent 60%);
 }
 
 .tilt:hover>.glare {
@@ -3055,5 +3055,84 @@ main,
 
 /* certificate cards: smaller cursor light than other cards */
 .ticket .glare {
-    background: radial-gradient(150px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .09), transparent 60%);
+    background: radial-gradient(120px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .045), transparent 60%);
+}
+
+/* =========================================
+   CERTIFICATE CARD HOVER (desktop + mobile)
+========================================= */
+.ticket.cert {
+    position: relative;
+    overflow: hidden;
+}
+
+/* gradient accent bar sweeps in on hover / press */
+.ticket.cert::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .55s var(--ease);
+    pointer-events: none;
+}
+
+.ticket.cert .cert-head>i {
+    transition: transform .5s cubic-bezier(.3, 1.6, .5, 1), color .3s;
+}
+
+.ticket.cert h3 {
+    transition: color .3s ease;
+}
+
+.ticket.cert:hover,
+.ticket.cert:active {
+    background: linear-gradient(160deg, var(--raise), var(--mid));
+    border-color: rgba(90, 169, 255, .45);
+}
+
+.ticket.cert:hover::before,
+.ticket.cert:active::before {
+    transform: scaleX(1);
+}
+
+.ticket.cert:hover .cert-head>i,
+.ticket.cert:active .cert-head>i {
+    transform: scale(1.15) rotate(-8deg);
+    color: var(--gold);
+}
+
+.ticket.cert:hover h3,
+.ticket.cert:active h3 {
+    color: var(--gold);
+}
+
+.ticket.cert:hover .cert-btn,
+.ticket.cert:active .cert-btn {
+    border-color: rgba(90, 169, 255, .5);
+    background: rgba(90, 169, 255, .12);
+}
+
+/* touch screens: no tilt, so give a lift and a press effect instead */
+@media (hover: none) {
+    .ticket.cert:active {
+        transform: translateY(-3px) scale(.985);
+        box-shadow: var(--glow);
+    }
+}
+
+@media (max-width: 600px) {
+    .ticket.cert {
+        padding: 22px 20px 20px;
+    }
+
+    .cert-btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
 }
