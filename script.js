@@ -272,7 +272,8 @@ $$(".spot").forEach((card) => {
                     say("Message sent. Thank you!");
                     form.reset();
                 } else throw new Error(data.message || "Failed");
-            } catch {
+            } catch (err) {
+                console.error("Contact form: message not sent.", err);
                 say("Could not send. Please email me directly.");
             } finally {
                 btn.disabled = false;
