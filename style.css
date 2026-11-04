@@ -1481,6 +1481,31 @@ main,
     transform: scale(1.15) rotate(-6deg);
 }
 
+/* two icons in one certificate head, and a row of buttons */
+.ticket.cert .cert-icons {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 36px;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--coral);
+}
+
+.cert-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 12px;
+    margin-top: 6px;
+}
+
+.cert-actions .cert-btn {
+    margin-top: 0;
+}
+
 /* ---------- experience ---------- */
 .xp {
     position: relative;
