@@ -3491,3 +3491,151 @@ a.c-val:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   EXPERIENCE CARDS: badge, status pill, chips
+========================================= */
+.xp-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    column-gap: 18px;
+    margin-bottom: 14px;
+}
+
+.xp-badge {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    font-size: 1.35rem;
+    color: var(--ink);
+    background: var(--grad);
+    box-shadow: 0 10px 26px rgba(166, 107, 255, .35);
+    transition: transform .5s cubic-bezier(.3, 1.6, .5, 1);
+}
+
+.xp-item.done .xp-badge {
+    color: var(--coral);
+    background: rgba(166, 107, 255, .12);
+    border: 1px solid rgba(166, 107, 255, .35);
+    box-shadow: none;
+}
+
+.xp-item:hover .xp-badge {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+.xp-head {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+}
+
+.xp-head time {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xp-head time i {
+    font-size: .85rem;
+}
+
+.xp-item .xp-co {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.xp-status {
+    grid-column: 3;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font: 600 .8rem var(--body);
+    color: var(--slate);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, .03);
+    white-space: nowrap;
+}
+
+.xp-status.live {
+    color: #5ee6a8;
+    border-color: rgba(94, 230, 168, .4);
+    background: rgba(94, 230, 168, .08);
+}
+
+.xp-status.live i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5ee6a8;
+    box-shadow: 0 0 0 0 rgba(94, 230, 168, .6);
+    animation: pulse 2s infinite;
+}
+
+.xp-status:not(.live) i {
+    color: var(--coral);
+}
+
+.xp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.xp-chips span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: .84rem;
+    color: var(--mist);
+    background: rgba(90, 169, 255, .08);
+    border: 1px solid rgba(90, 169, 255, .22);
+}
+
+.xp-chips span i {
+    color: var(--gold);
+    font-size: .8rem;
+}
+
+/* the running internship stands out */
+.xp-item.current {
+    background: linear-gradient(135deg, rgba(166, 107, 255, .14), var(--mid) 55%);
+    border-color: rgba(166, 107, 255, .4);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .3), 0 0 40px rgba(166, 107, 255, .08);
+}
+
+.xp-item.current::before {
+    transform: scaleY(1);
+}
+
+@media (max-width: 600px) {
+    .xp-top {
+        grid-template-columns: auto 1fr;
+        row-gap: 14px;
+    }
+
+    .xp-status {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+    }
+
+    .xp-head {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}
