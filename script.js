@@ -433,7 +433,7 @@ if (finePointer && !reduced) {
     if (!finePointer || reduced) return;
 
     /* 3D tilt + glare on cards */
-    $$(".tile, .t-card, .xp-item, .course-card, .ticket").forEach((el) => {
+    $$(".tile, .t-card, .xp-item, .course-card, .ticket, .project").forEach((el) => {
         el.classList.add("tilt");
         if (getComputedStyle(el).position === "static") el.style.position = "relative";
         const g = document.createElement("span");
@@ -469,3 +469,8 @@ if (finePointer && !reduced) {
         b.addEventListener("pointerleave", () => (b.style.translate = ""));
     });
 })();
+/* ---------- Project cards: number each card and stagger its tags ---------- */
+$$(".project").forEach((card, n) => {
+    card.style.setProperty("--n", n + 1);
+    $$(".tags span", card).forEach((t, i) => t.style.setProperty("--i", i));
+});

@@ -3639,3 +3639,391 @@ a.c-val:hover {
         grid-row: 2;
     }
 }
+
+/* =========================================
+   PROJECT CARDS: extra motion
+========================================= */
+.project .p-body h3 {
+    width: fit-content;
+    background: var(--grad) left bottom / 0% 3px no-repeat;
+    padding-bottom: 4px;
+    transition: background-size .5s var(--ease);
+}
+
+.project:hover .p-body h3 {
+    background-size: 100% 3px;
+}
+
+.project .kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project .kind::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--coral);
+    box-shadow: 0 0 0 0 rgba(166, 107, 255, .6);
+}
+
+/* shine sweeps across the icon tile on hover */
+.p-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .55) 50%, transparent 65%);
+    transform: translateX(-130%);
+    transition: transform .8s var(--ease);
+}
+
+.project:hover .p-visual::after {
+    transform: translateX(130%);
+}
+
+.project .p-links a i {
+    transition: transform .3s var(--ease);
+}
+
+.project .p-links a:hover i {
+    transform: translate(3px, -3px) scale(1.15);
+}
+
+/* big outlined number on each card */
+.project .p-body {
+    position: relative;
+}
+
+.project .p-body::before {
+    content: "0" var(--n, 1);
+    position: absolute;
+    top: 14px;
+    right: 28px;
+    font: 800 5.5rem/1 var(--display);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(166, 107, 255, .22);
+    transition: transform .6s var(--ease), -webkit-text-stroke-color .4s;
+    pointer-events: none;
+}
+
+.project:hover .p-body::before {
+    transform: translateY(-6px) scale(1.08);
+    -webkit-text-stroke-color: rgba(90, 169, 255, .6);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .p-visual {
+        animation: pFloat 5s ease-in-out infinite, pPulse 3s ease-out infinite;
+    }
+
+    .project:nth-child(2n) .p-visual {
+        animation-delay: -2s, -1s;
+    }
+
+    .project .kind::before {
+        animation: pDot 2s ease-out infinite;
+    }
+
+    /* tags pop in one after another when the card scrolls into view */
+    .project.show .tags span {
+        animation: tagPop .55s var(--ease) backwards;
+        animation-delay: calc(var(--i, 0) * 70ms + 350ms);
+    }
+
+    /* cards slide in from alternating sides */
+    .js .project[data-r] {
+        transform: translateX(-60px) scale(.97);
+    }
+
+    .js .project.rev[data-r] {
+        transform: translateX(60px) scale(.97);
+    }
+
+    .js .project[data-r].show {
+        transform: none;
+    }
+}
+
+@keyframes pFloat {
+    50% {
+        translate: 0 -7px;
+    }
+}
+
+@keyframes pPulse {
+    from {
+        box-shadow: 0 0 0 0 rgba(166, 107, 255, .45);
+    }
+
+    to {
+        box-shadow: 0 0 0 20px rgba(166, 107, 255, 0);
+    }
+}
+
+@keyframes pDot {
+    to {
+        box-shadow: 0 0 0 9px rgba(166, 107, 255, 0);
+    }
+}
+
+@keyframes tagPop {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.8);
+    }
+}
+
+@media (max-width: 900px) {
+    .project .p-body::before {
+        font-size: 3.5rem;
+        top: 8px;
+        right: 18px;
+    }
+}
+
+/* =========================================
+   EXPERIENCE: technologies / projects built
+========================================= */
+.xp-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.xp-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--slate);
+}
+
+.xp-label i {
+    color: var(--coral);
+}
+
+.xp-item .xp-stack+.p-links {
+    margin-top: 16px;
+}
+
+
+/* =========================================
+   EXPERIENCE: technologies in the free space on the right
+========================================= */
+.xp-side {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(90, 169, 255, .04);
+    border: 1px solid var(--line);
+}
+
+.xp-side .xp-stack {
+    margin-top: 0;
+}
+
+@media (min-width: 901px) {
+    .xp-main:has(.xp-side) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        column-gap: 40px;
+        align-items: start;
+    }
+
+    .xp-main:has(.xp-side)>* {
+        grid-column: 1;
+    }
+
+    .xp-main:has(.xp-side)>.xp-top {
+        grid-column: 1 / -1;
+    }
+
+    .xp-main:has(.xp-side)>.xp-side {
+        grid-column: 2;
+        grid-row: 2 / span 3;
+    }
+}
+
+@media (max-width: 900px) {
+    .xp-side {
+        margin-top: 16px;
+    }
+}
+
+
+/* experience buttons on phones: two on the first row, third centred below */
+@media (max-width: 600px) {
+    .xp-item .p-links:has(a:nth-child(2)) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .xp-item .p-links:has(a:nth-child(2)) a {
+        justify-content: center;
+        padding: 10px 8px;
+        font-size: .88rem;
+        white-space: nowrap;
+    }
+
+    .xp-item .p-links a:nth-child(3):last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        min-width: 50%;
+    }
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS (animations untouched)
+========================================= */
+
+/* never let the page scroll sideways, even while cards wait off-screen to slide in */
+html,
+body {
+    overflow-x: clip;
+    max-width: 100%;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+}
+
+/* grids with a fixed minimum width overflow on narrow phones */
+.tickets {
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+.gallery {
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+}
+
+@media (max-width: 900px) {
+
+    /* slide in from the bottom instead of the sides so nothing sticks out */
+    .js .project[data-r],
+    .js .project.rev[data-r] {
+        transform: translateY(34px) scale(.97);
+    }
+
+    .js .project[data-r].show {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .intro-skip {
+        top: 16px;
+        right: 14px;
+    }
+
+    .section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+
+
+    .xp-item {
+        padding: 22px 18px;
+    }
+
+    .tile {
+        padding: 22px 16px;
+    }
+
+    .t-card,
+    .course-card,
+    .ticket {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .p-body,
+    .modal-box {
+        padding: 22px 18px;
+    }
+
+    .modal-box {
+        width: 94vw;
+        max-height: 90vh;
+    }
+
+    .xp-side {
+        padding: 16px;
+    }
+
+    .contact-lead {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .c-row {
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+
+
+    .c-val {
+        min-width: 0;
+    }
+
+    .c-copy {
+        flex: none;
+    }
+
+    .c-form {
+        padding: 20px 16px;
+    }
+
+    .p-links {
+        gap: 10px;
+    }
+
+    .hero-actions {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .p-visual,
+    .project.rev .p-visual {
+        width: 80px;
+        height: 80px;
+        margin: 22px 0 0 18px;
+        border-radius: 20px;
+    }
+
+    .skill {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .btn {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
+
+@media (max-width: 340px) {
+    .name {
+        font-size: 3rem;
+    }
+}
