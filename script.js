@@ -432,8 +432,8 @@ if (finePointer && !reduced) {
 
     if (!finePointer || reduced) return;
 
-    /* 3D tilt + glare on cards */
-    $$(".tile, .t-card, .xp-item, .course-card, .ticket, .project").forEach((el) => {
+    /* 3D tilt + glare on cards (project and internship cards removed: they use a simple hover) */
+    $$(".tile, .t-card, .course-card, .ticket").forEach((el) => {
         el.classList.add("tilt");
         if (getComputedStyle(el).position === "static") el.style.position = "relative";
         const g = document.createElement("span");
