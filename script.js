@@ -28,6 +28,9 @@ $("#year").textContent = new Date().getFullYear();
     });
 })();
 
+/* ---------- Education timeline: cards alternate left / right ---------- */
+$$("#timeline .t-item").forEach((el, i) => el.classList.add(i % 2 ? "r" : "l"));
+
 /* ---------- Typing roles ---------- */
 (() => {
     const el = $("#typed");
@@ -291,6 +294,24 @@ if (finePointer && !reduced) {
         glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     }, { passive: true });
 
+    /* cursor dot + trailing ring */
+    const dot = $("#curDot"), ring = $("#curRing");
+    let cx = 0, cy = 0, rx = 0, ry = 0;
+    addEventListener("pointermove", (e) => {
+        cx = e.clientX; cy = e.clientY;
+        dot.style.opacity = 1; ring.style.opacity = 1;
+        dot.style.transform = `translate(${cx}px, ${cy}px)`;
+    }, { passive: true });
+    (function trail() {
+        rx += (cx - rx) * 0.16; ry += (cy - ry) * 0.16;
+        ring.style.transform = `translate(${rx}px, ${ry}px)`;
+        requestAnimationFrame(trail);
+    })();
+    document.addEventListener("pointerover", (e) => {
+        ring.classList.toggle("big", !!e.target.closest("a, button, .tile, .skill, .stat-card, .t-card, .course-card, .ticket, .project, .xp-item, .traits li, .gallery img"));
+    });
+    document.documentElement.addEventListener("mouseleave", () => { dot.style.opacity = 0; ring.style.opacity = 0; });
+
     const mail = $("#mail");
     mail.addEventListener("pointermove", (e) => {
         const r = mail.getBoundingClientRect();
@@ -301,58 +322,62 @@ if (finePointer && !reduced) {
     mail.addEventListener("pointerleave", () => (mail.style.transform = ""));
 }
 
-/* ---------- Background: connected-dots network that reacts to the cursor ---------- */
+/* ---------- Background: drifting dots that link up and reach for the cursor ---------- */
 (() => {
     const cv = $("#net");
     const ctx = cv.getContext("2d");
-    const pointer = { x: -999, y: -999 };
-    let w, h, dots = [], dpr = 1, running = true;
+    const pointer = { x: -9999, y: -9999 };
+    let w = 0, h = 0, dpr = 1, dots = [], running = true, link = 135;
+    const reach = 170;
 
     function size() {
         dpr = Math.min(devicePixelRatio || 1, 2);
-        w = cv.width = innerWidth * dpr;
-        h = cv.height = innerHeight * dpr;
-        const n = Math.min(90, Math.floor((innerWidth * innerHeight) / 17000));
-        dots = Array.from({ length: n }, () => ({
-            x: Math.random() * w, y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.35 * dpr, vy: (Math.random() - 0.5) * 0.35 * dpr,
-            r: (Math.random() * 1.3 + 0.6) * dpr,
-        }));
+        w = innerWidth; h = innerHeight;
+        cv.width = w * dpr; cv.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        link = w < 700 ? 95 : 135;
+        const n = Math.max(22, Math.min(70, Math.round((w * h) / 20000)));
+        while (dots.length < n) {
+            dots.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 1.4 + 0.7 });
+        }
+        dots.length = n;
     }
 
     function frame() {
         if (!running) return;
         ctx.clearRect(0, 0, w, h);
-        const link = 140 * dpr, near = 190 * dpr;
         for (let i = 0; i < dots.length; i++) {
             const a = dots[i];
             a.x += a.vx; a.y += a.vy;
-            if (a.x < 0 || a.x > w) a.vx *= -1;
-            if (a.y < 0 || a.y > h) a.vy *= -1;
+            if (a.x < -20) a.x = w + 20; else if (a.x > w + 20) a.x = -20;
+            if (a.y < -20) a.y = h + 20; else if (a.y > h + 20) a.y = -20;
 
-            const dm = Math.hypot(a.x - pointer.x, a.y - pointer.y);
-            if (dm < near) { /* gentle push away from cursor */
-                a.x += ((a.x - pointer.x) / dm) * 0.6 * dpr;
-                a.y += ((a.y - pointer.y) / dm) * 0.6 * dpr;
-            }
+            const mx = a.x - pointer.x, my = a.y - pointer.y, md = Math.sqrt(mx * mx + my * my);
             ctx.beginPath();
-            ctx.arc(a.x, a.y, a.r, 0, 6.283);
-            ctx.fillStyle = dm < near ? "rgba(90,169,255,.95)" : "rgba(236,239,248,.45)";
+            ctx.arc(a.x, a.y, a.r, 0, 6.2832);
+            ctx.fillStyle = md < reach ? "rgba(143,184,255,.95)" : "rgba(255,255,255,.5)";
             ctx.fill();
 
             for (let j = i + 1; j < dots.length; j++) {
-                const b = dots[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+                const b = dots[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
                 if (d < link) {
-                    ctx.strokeStyle = `rgba(166,107,255,${(1 - d / link) * 0.4})`;
-                    ctx.lineWidth = dpr * 0.8;
+                    ctx.strokeStyle = `rgba(47,123,240,${(0.3 * (1 - d / link)).toFixed(3)})`;
+                    ctx.lineWidth = 1;
                     ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
                 }
+            }
+            if (md < reach) { /* dots near the cursor reach out to it */
+                ctx.strokeStyle = `rgba(196,219,255,${(0.45 * (1 - md / reach)).toFixed(3)})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(pointer.x, pointer.y); ctx.stroke();
             }
         }
         requestAnimationFrame(frame);
     }
 
-    addEventListener("pointermove", (e) => { pointer.x = e.clientX * dpr; pointer.y = e.clientY * dpr; }, { passive: true });
+    addEventListener("pointermove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+    addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") pointer.x = pointer.y = -9999; });
+    document.documentElement.addEventListener("mouseleave", () => { pointer.x = pointer.y = -9999; });
     addEventListener("resize", size);
     document.addEventListener("visibilitychange", () => {
         running = !document.hidden;
@@ -382,7 +407,7 @@ if (finePointer && !reduced) {
             '<div class="intro-panel top"></div><div class="intro-panel bottom"></div>' +
             '<div class="rays"></div>' +
             '<div class="intro-stage">' +
-            '<div class="sc s1"><div class="ribbon"><i></i><i></i><i></i></div><div class="streak"></div>' +
+            '<div class="sc s1">' +
             '<h1 class="nf-name">Arpan Maiti</h1></div>' +
             '<div class="sc s2"><div class="intro-photo"><img src="arpan.jpg" alt="" /></div>' +
             '<p class="s2-sub">B.Tech CSE Student</p>' +
@@ -433,7 +458,7 @@ if (finePointer && !reduced) {
     if (!finePointer || reduced) return;
 
     /* 3D tilt + glare on cards (project and internship cards removed: they use a simple hover) */
-    $$(".tile, .t-card, .course-card, .ticket").forEach((el) => {
+    $$(".tile, .ticket").forEach((el) => {
         el.classList.add("tilt");
         if (getComputedStyle(el).position === "static") el.style.position = "relative";
         const g = document.createElement("span");

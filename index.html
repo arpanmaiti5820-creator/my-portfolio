@@ -12,7 +12,7 @@
             position: fixed;
             inset: 0;
             z-index: 998;
-            background: #070a12
+            background: #030407
         }
     </style>
     <script>(function (d) { var c = d.documentElement.classList; c.add("js"); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { c.add("intro-pending"); setTimeout(function () { c.remove("intro-pending") }, 4000) } })(document);</script>
@@ -29,6 +29,8 @@
     <div class="progress-bar" id="progressBar"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
     <canvas id="net" aria-hidden="true"></canvas>
+    <div class="cur-dot" id="curDot" aria-hidden="true"></div>
+    <div class="cur-ring" id="curRing" aria-hidden="true"></div>
 
     <!-- NAV -->
     <header class="header">
@@ -82,8 +84,8 @@
                     <defs>
                         <path id="ringPath" d="M200,200 m-165,0 a165,165 0 1,1 330,0 a165,165 0 1,1 -330,0" />
                         <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0" stop-color="#5aa9ff" />
-                            <stop offset="1" stop-color="#a66bff" />
+                            <stop offset="0" stop-color="#8fb8ff" />
+                            <stop offset="1" stop-color="#2f7bf0" />
                         </linearGradient>
                     </defs>
                     <circle cx="200" cy="200" r="120" class="ring ring-in" />
@@ -175,6 +177,12 @@
                     </div>
                     <p class="live"><i></i> Building, learning, improving</p>
                 </aside>
+            </div>
+            <div class="stats">
+                <div class="stat-card" data-r><b class="stat-num"><span class="count" data-to="4">4</span></b><span class="stat-lbl">Projects completed</span></div>
+                <div class="stat-card" data-r><b class="stat-num"><span class="count" data-to="8">8</span></b><span class="stat-lbl">Certifications</span></div>
+                <div class="stat-card" data-r><b class="stat-num"><span class="count" data-to="3">3</span></b><span class="stat-lbl">Internships</span></div>
+                <div class="stat-card" data-r><b class="stat-num"><span class="count" data-to="14" data-suffix="+">14+</span></b><span class="stat-lbl">Technologies used</span></div>
             </div>
         </section>
 
@@ -369,47 +377,47 @@
                 </div>
             </div>
 
-            <div class="course" data-r>
-                <div class="course-head">
+            <div class="course">
+                <div class="course-head" data-r>
                     <h3>Core computer science</h3>
                     <p>Key concepts from my B.Tech CSE journey.</p>
                 </div>
                 <div class="course-grid">
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-diagram-project"></i>
                         <h3>Data Structures &amp; Algorithms</h3>
                         <div class="course-topics"><span>Arrays</span><span>Linked
                                 Lists</span><span>Stacks</span><span>Queues</span><span>Trees</span><span>Graphs</span><span>Sorting</span><span>Searching</span>
                         </div>
                     </div>
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-cubes"></i>
                         <h3>Object-Oriented Programming</h3>
                         <div class="course-topics"><span>Classes &amp;
                                 Objects</span><span>Inheritance</span><span>Polymorphism</span><span>Encapsulation</span><span>Abstraction</span><span>Exception
                                 Handling</span></div>
                     </div>
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-brain"></i>
                         <h3>Machine Learning</h3>
                         <div class="course-topics"><span>Supervised Learning</span><span>Linear
                                 Regression</span><span>Logistic Regression</span><span>SVM</span><span>Decision
                                 Trees</span><span>Feature Scaling</span></div>
                     </div>
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-code-branch"></i>
                         <h3>Design &amp; Analysis of Algorithms</h3>
                         <div class="course-topics"><span>Complexity Analysis</span><span>Recursion</span><span>Divide
                                 &amp; Conquer</span><span>Greedy Algorithms</span><span>Dynamic Programming</span></div>
                     </div>
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-server"></i>
                         <h3>Operating Systems</h3>
                         <div class="course-topics"><span>Processes</span><span>Threads</span><span>CPU
                                 Scheduling</span><span>Deadlocks</span><span>Memory Management</span><span>File
                                 Systems</span></div>
                     </div>
-                    <div class="course-card">
+                    <div class="course-card" data-r>
                         <i class="fa-solid fa-microchip"></i>
                         <h3>Computer Architecture</h3>
                         <div class="course-topics"><span>CPU</span><span>Memory
